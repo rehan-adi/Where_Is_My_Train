@@ -1,0 +1,301 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav{
+    background-color: blue;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 25px;
+}
+
+.nav-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+.icon{
+    font-size: 24px;
+    color: white;
+}
+
+.nav h1{
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.top-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    height: 30vh;
+    margin-top: 10px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+}
+
+.border{
+    border: 0.5px solid silver;
+    width: 100%;
+}
+
+.wrapper{
+    gap: 30px;
+    width: 90%;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.train-search{
+    padding-right: 15px;
+    padding-left: 10px;
+    margin-top: 20px;
+    width: 95%;
+    height: 8vh;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 30px;
+}
+.swipe-arrow{
+    position: absolute;
+    right: 100px;
+    font-size: 35px;
+    z-index: 20;
+    color: green;
+    border: 1px solid silver;
+    border-radius: 50%;
+    padding: 5px 5px;
+}
+.search-history{
+    margin-top: 20px;
+    width: 95%;
+    max-height: fit-content;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+.search {
+    color: blue;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.sh{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+    gap: 100px;
+    border-bottom: 0.1px solid silver;
+}
+
+.sh div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.train-search h1{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.train-search span {
+    background-color: green;
+    padding: 10px 10px;
+    border-radius: 4px;
+}
+
+.main-one{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.main-one input{
+    font-size: 20px;
+    outline: none;
+}
+
+.blue-back{
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    padding: 1px 3px;
+    font-size: 15px;
+}
+.button{
+    text-align: center;
+    background-color: green;
+    padding: 14px 120px;
+    border-radius: 6px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+.button-div{
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text{
+    font-size: 22px;
+    font-weight: 600;
+}
+.cross-icon{
+    position: absolute;
+    right: 50px;
+    font-size: 20px;
+}
+
+.search-icon{
+    font-size: 20px;
+    color: white;
+}
+.cross-icon1{
+    font-size: 20px;
+}
+
+.logo{
+    color: blue;
+    font-size: 25px;
+}
+
+.right-arrow{
+    color: green;
+    display: inline-block;
+    font-size: 30px;
+}
+
+.trainTime-nav{
+    background-color: blue;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.trainTime-nav h1{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+.arrow-icon{
+    color: white;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.train-details{
+    padding: 15px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: 0.1px solid silver;
+}
+
+.train-details-top{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.train-details-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detail-icon{
+    display: inline-block;
+    font-size: 32px;
+    margin: 0px 5px;
+}
+.train-name{
+    font-size: 20px;
+    font-weight: 600;
+}
+.train-time{
+    font-size: 20px;
+    font-weight: 600;
+}
+.train-time-not{
+    font-size: 20px;
+    font-weight: 600;
+    color: gray;
+}
+.runs-daily{
+    color: blue;
+    font-weight: 500;
+    font-size: 17px;
+}
+.train-no{
+    background-color: blue;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: white;
+}
+.train-no-not{
+    background-color: gray;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: white;
+}
+.depend{
+    letter-spacing: 3px;
+    font-weight: 500;
+    font-size: 17px;
+    color: gray;
+}
+
+.train-details-bottom span {
+    color: blue;
+    text-decoration: underline;
+}
+.train-name-not{
+    color: gray;
+    font-size: 20px;
+    font-weight: 600;
+}
+.not-running{
+    font-size: 17px;
+    font-weight: 600;
+    color: gray;
+}
