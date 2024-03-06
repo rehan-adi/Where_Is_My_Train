@@ -15,10 +15,10 @@ function WMT_UI() {
   
 
   const handleFindTrains = () => {
-   if (fromStation.trim().toLowerCase() === "howrah" && toStation.trim().toLowerCase() === "delhi") {
+   if (fromStation.trim() === "Howrah Junction" && toStation.trim() === "Delhi Junction") {
       navigate("/train-time");
    } else {
-     alert("Please enter 'Howrah' as From Station and 'Delhi' as To Station.");
+     alert("Please enter Valid Station");
    }
  };
 
@@ -49,7 +49,6 @@ function WMT_UI() {
             </div>
             <div className="border"></div>
             <span className="swipe-arrow">
-              {" "}
               <FaArrowDownUpAcrossLine />
             </span>
             <div className="main-one">
