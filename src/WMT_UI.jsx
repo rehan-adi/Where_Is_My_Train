@@ -13,14 +13,29 @@ function WMT_UI() {
   const [toStation, setToStation] = useState("");
   const navigate = useNavigate(); ;
   
+  const handleFindTrains = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/check', {
+            method: 'POST',
+            body: JSON.stringify({ fromStation, toStation }),
+            headers: {
+              'Content-Type': 'application/json',
+          },
+        });
 
-  const handleFindTrains = () => {
-   if (fromStation.trim() === "Howrah Junction" && toStation.trim() === "Delhi Junction") {
-      navigate("/train-time");
-   } else {
-     alert("Please enter Valid Station");
-   }
- };
+        const result = await response.json();
+
+        if (result.isValid) {
+            navigate("/train-time");
+        } else {
+            alert("Please enter valid station");
+        }
+    } catch (error) {
+        console.error('Error sending data to the server');
+        alert('An error occurred. Please try again.');
+    }
+};
+
 
   return (
     <div className="container">
