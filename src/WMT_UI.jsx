@@ -5,37 +5,40 @@ import { IoSearch } from "react-icons/io5";
 import { RiSignalTowerFill } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaArrowDownUpAcrossLine } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom"; 
-
+import { useNavigate, useLocation } from "react-router-dom";
+import { Alert, Box } from "@mui/material";
 
 function WMT_UI() {
   const [fromStation, setFromStation] = useState("");
   const [toStation, setToStation] = useState("");
-  const navigate = useNavigate(); ;
-  
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleFindTrains = async () => {
     try {
-        const response = await fetch('http://localhost:3000/check', {
-            method: 'POST',
-            body: JSON.stringify({ fromStation, toStation }),
-            headers: {
-              'Content-Type': 'application/json',
-          },
+      const response = await fetch("http://localhost:3000/check", {
+        method: "POST",
+        body: JSON.stringify({ fromStation, toStation }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const result = await response.json();
+
+      if (result.isValid) {
+        navigate("/train-time", {
+          state: { successMessage: "Successfully found trains!" },
         });
-
-        const result = await response.json();
-
-        if (result.isValid) {
-            navigate("/train-time");
-        } else {
-            alert("Please enter valid station");
-        }
+      } else {
+        setErrorMessage("Please Enter Valid Station");
+      }
     } catch (error) {
-        console.error('Error sending data to the server');
-        alert('An error occurred. Please try again.');
+      console.error("Error sending data to the server");
+      alert("An error occurred. Please try again.");
     }
-};
-
+  };
 
   return (
     <div className="container">
@@ -45,6 +48,28 @@ function WMT_UI() {
             <VscThreeBars className="icon" />
           </span>
           <h1>Where is my Train</h1>
+          <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
+            {location.state && location.state.successMessage && (
+              <Alert
+                sx={{
+                  marginBottom: 2,
+                  backgroundColor: "#4CAF50",
+                  color: "white",
+                  zIndex: 1000,
+                  position: "absolute",
+                   bottom: 10,
+                }}
+                severity="success"
+              >
+                {location.state.successMessage}
+              </Alert>
+            )}
+            {errorMessage && (
+              <Alert sx={{ marginBottom: 2,  position: "absolute", bottom: 0, width: '60%', left: '40%'}} severity="error">
+                {errorMessage}
+              </Alert>
+            )}
+          </Box>
         </div>
       </nav>
       <main className="main">
