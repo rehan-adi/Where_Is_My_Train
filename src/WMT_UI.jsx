@@ -5,15 +5,18 @@ import { IoSearch } from "react-icons/io5";
 import { RiSignalTowerFill } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaArrowDownUpAcrossLine } from "react-icons/fa6";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Alert, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 function WMT_UI() {
   const [fromStation, setFromStation] = useState("");
   const [toStation, setToStation] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [checkSnack, setCheckSnack] = useState(false);
+
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleFindTrains = async () => {
     try {
@@ -28,16 +31,34 @@ function WMT_UI() {
       const result = await response.json();
 
       if (result.isValid) {
-        navigate("/train-time", {
-          state: { successMessage: "Successfully found trains!" },
-        });
+        // navigate("/train-time", {});
+        setSnackbarOpen(true);
+        setTimeout(() => {
+          navigate("/train-time", {});
+        }, 1000);
       } else {
-        setErrorMessage("Please Enter Valid Station");
+        setCheckSnack(true);
       }
     } catch (error) {
       console.error("Error sending data to the server");
       alert("An error occurred. Please try again.");
     }
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  };
+
+  const handleCloseCheckSnack = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setCheckSnack(false);
   };
 
   return (
@@ -48,28 +69,28 @@ function WMT_UI() {
             <VscThreeBars className="icon" />
           </span>
           <h1>Where is my Train</h1>
-          <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
-            {location.state && location.state.successMessage && (
-              <Alert
-                sx={{
-                  marginBottom: 2,
-                  backgroundColor: "#4CAF50",
-                  color: "white",
-                  zIndex: 1000,
-                  position: "absolute",
-                   bottom: 10,
-                }}
-                severity="success"
-              >
-                {location.state.successMessage}
-              </Alert>
-            )}
-            {errorMessage && (
-              <Alert sx={{ marginBottom: 2,  position: "absolute", bottom: 0, width: '60%', left: '40%'}} severity="error">
-                {errorMessage}
-              </Alert>
-            )}
-          </Box>
+          <Snackbar
+            open={snackbarOpen}
+            autoHideDuration={6000}
+            onClose={handleCloseSnackbar}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          >
+            <Alert onClose={handleCloseSnackbar} severity="success">
+              Wohoo!! You are just one step away from completing your booking :)
+            </Alert>
+          </Snackbar>
+
+          <Snackbar
+            open={checkSnack}
+            autoHideDuration={6000}
+            onClose={handleCloseCheckSnack}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          >
+            <Alert onClose={handleCloseCheckSnack} severity="warning">
+              "Please fill in all the required fields before proceeding with the
+              payment"
+            </Alert>
+          </Snackbar>
         </div>
       </nav>
       <main className="main">
